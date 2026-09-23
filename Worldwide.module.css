@@ -1,0 +1,124 @@
+.foot {
+  position: relative;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--hair-soft);
+  padding: clamp(80px, 14vh, 160px) var(--gutter) clamp(40px, 6vh, 72px);
+  isolation: isolate;
+}
+
+/* the globe, half sunk below the fold, turning slowly */
+.globe {
+  position: absolute;
+  left: 50%;
+  bottom: -54%;
+  width: min(148vw, 1180px);
+  height: auto;
+  translate: -50% 0;
+  z-index: -1;
+  opacity: 0.3;
+  animation: turn 220s linear infinite;
+  mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 72%);
+}
+
+@keyframes turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .globe {
+    animation: none;
+  }
+}
+
+.inner::before {
+  content: '';
+  position: absolute;
+  inset: -12% -20%;
+  z-index: -1;
+  background: radial-gradient(ellipse at 50% 46%, rgba(5, 5, 6, 0.86) 0%, rgba(5, 5, 6, 0) 70%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.big {
+  font-size: clamp(44px, 12vw, 172px);
+  margin: 0 0 8px;
+}
+
+.contact {
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  padding: 16px 42px;
+  border: var(--rule) solid var(--hair);
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.contact:hover,
+.contact:focus-visible {
+  background: var(--bone);
+  border-color: var(--bone);
+  color: #000;
+}
+
+.who {
+  margin: 4px 0 0;
+  color: var(--grey);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 30px;
+}
+
+.socials a {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.25s var(--ease);
+}
+
+.socials a:hover,
+.socials a:focus-visible {
+  color: var(--bone);
+}
+
+.base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: clamp(48px, 10vh, 110px);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-dim);
+}
+
+.markSmall {
+  width: 44px;
+  height: auto;
+  color: var(--grey-dim);
+}

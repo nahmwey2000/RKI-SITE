@@ -1,0 +1,39 @@
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(24px, 6vw, 80px);
+  align-items: end;
+  border-top: 0;
+}
+
+.line {
+  margin: 0;
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 108, 'wght' 600;
+  text-transform: uppercase;
+  font-size: clamp(24px, 4.4vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.shot figcaption {
+  margin-top: 10px;
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .intro {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

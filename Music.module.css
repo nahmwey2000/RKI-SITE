@@ -1,0 +1,243 @@
+/* ---------- the feature ---------- */
+
+.featured {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.sleeve {
+  position: relative;
+  isolation: isolate;
+}
+
+.sleeve img {
+  width: 100%;
+  height: auto;
+  border: var(--rule) solid var(--hair-soft);
+}
+
+/* the disc slides out from behind the sleeve on hover, and turns on play */
+.disc {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 62%;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #0a0a0c 0 16%, transparent 16.5%),
+    repeating-conic-gradient(from 0deg, #16161a 0deg 6deg, #1d1d22 6deg 12deg),
+    #121216;
+  box-shadow: 0 0 0 1px rgba(237, 236, 235, 0.08);
+  transition: right 0.6s var(--ease);
+  z-index: -1;
+}
+
+.sleeve:hover .disc,
+.disc[data-spin='true'] {
+  right: -22%;
+}
+
+.disc[data-spin='true'] {
+  animation: spin 3.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.title {
+  font-size: clamp(38px, 5.4vw, 88px);
+  margin: 6px 0 10px;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  position: relative;
+  z-index: 1;
+}
+
+.sub {
+  margin: 0;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+}
+
+.note {
+  margin: 20px 0 0;
+  max-width: 44ch;
+  color: var(--bone);
+  opacity: 0.86;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.actions a,
+.play {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  border: var(--rule) solid var(--hair);
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.actions a:hover,
+.actions a:focus-visible,
+.play:hover,
+.play:focus-visible {
+  background: var(--bone);
+  border-color: var(--bone);
+  color: #000;
+}
+
+.play {
+  background: var(--glow);
+  border-color: var(--glow);
+  color: #000;
+}
+
+.embed {
+  margin-top: 22px;
+  max-width: 560px;
+}
+
+.embed iframe {
+  display: block;
+  border-radius: 0;
+}
+
+/* ---------- the register ---------- */
+
+.list {
+  border-top: var(--rule) solid var(--hair-soft);
+  position: relative;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) 7rem 1.5rem;
+  gap: 16px;
+  align-items: baseline;
+  padding: 18px 4px;
+  border-bottom: var(--rule) solid var(--hair-soft);
+  transition:
+    background 0.3s var(--ease),
+    padding-left 0.3s var(--ease);
+}
+
+.row:hover,
+.row:focus-visible {
+  background: rgba(237, 236, 235, 0.04);
+  padding-left: 16px;
+}
+
+.year {
+  color: var(--grey-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.name {
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 112, 'wght' 700;
+  text-transform: uppercase;
+  font-size: clamp(20px, 3.4vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.name em {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--grey);
+  margin-left: 10px;
+}
+
+.kind {
+  color: var(--grey-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  text-align: right;
+}
+
+.go {
+  color: var(--grey-dim);
+  text-align: right;
+}
+
+.row:hover .go {
+  color: var(--glow);
+}
+
+/* the still that rides with the cursor */
+.cursorCover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.cursorCover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  scale: 0.92;
+  transition:
+    opacity 0.3s var(--ease),
+    scale 0.4s var(--ease);
+}
+
+.cursorCover img[data-on='true'] {
+  opacity: 1;
+  scale: 1;
+}
+
+@media (hover: none), (max-width: 860px) {
+  .cursorCover {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .featured {
+    grid-template-columns: 1fr;
+  }
+
+  .sleeve {
+    max-width: 340px;
+  }
+
+  .row {
+    grid-template-columns: 4rem minmax(0, 1fr) 1.2rem;
+  }
+
+  .kind {
+    display: none;
+  }
+}
